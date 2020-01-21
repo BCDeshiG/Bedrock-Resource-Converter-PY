@@ -2,6 +2,7 @@ import sys
 import json
 import os
 import zipfile
+from shutil import copyfile
 
 def parseArgs():
 	if len(sys.argv) == 1: # No arguments supplied
@@ -26,6 +27,7 @@ def startConversion(arg1, arg2):
 	arg1 = parseZip(arg1)
 	parseManifest(arg1, arg2)
 	#parseSplashes(arg1, arg2)
+	#copyfile((arg1 + "/end.txt"), (arg2 + "/assets/minecraft/texts/end.txt")) # FIXME add to main copy function
 
 def parseZip(arg1):
 	if arg1.lower().endswith(".zip"):
@@ -36,7 +38,14 @@ def parseZip(arg1):
 		return arg1
 	arg1 = os.path.splitext(arg1)[0]
 	with zipfile.ZipFile(arg1 + fileExt,"r") as pack:
-		pack.extractall(arg1) # FIXME handle root folder
+		pack.extractall(arg1)
+	try:
+		file = open(arg1 + "/manifest.json") # Checks if manifest in root folder
+		file.close()
+	except:
+		for root, dirs, files in os.walk(arg1):
+			if "manifest.json" in files: # Find manifest
+				arg1 = root + "\\" # Navigate to where manifest is
 	return arg1
 
 def parseManifest(arg1, arg2):
@@ -68,6 +77,5 @@ def parseSplashes(arg1, arg2):
 	for i in range(len(arr)):
 		outFile.write(arr[i]+"\n")
 	outFile.close()
-
 
 parseArgs()
