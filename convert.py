@@ -23,11 +23,12 @@ def parseArgs():
 		else:
 			startConversion(sys.argv[1], sys.argv[2])
 
-def startConversion(arg1, arg2):
+def startConversion(arg1, arg2): # FIXME Handle missing files
 	arg1 = parseZip(arg1)
 	parseManifest(arg1, arg2)
-	#parseSplashes(arg1, arg2)
-	#copyfile((arg1 + "/end.txt"), (arg2 + "/assets/minecraft/texts/end.txt")) # FIXME add to main copy function
+	genFolders(arg2)
+	parseSplashes(arg1, arg2)
+	copyfile((arg1 + "/credits/end.txt"), (arg2 + "/assets/minecraft/texts/end.txt")) # FIXME add to main copy function
 
 def parseZip(arg1):
 	if arg1.lower().endswith(".zip"):
@@ -62,17 +63,22 @@ def parseManifest(arg1, arg2):
 	outText += '"pack_format": 5}}'
 	try:
 		os.mkdir(arg2)
-		file = open(arg2 + "/pack.mcmeta", "x") # Create new file if it donesn't already exist
+		file = open(arg2 + "/pack.mcmeta", "x") # Create new file if it doesn't already exist
 		file.write(outText)
 		file.close()
 	except:
 		print("Folder already exists or was unable to be created")
 		exit()
 
+def genFolders(arg2):
+	with open("paths.txt", "r") as file:
+		for line in file:
+			os.makedirs(arg2 + line.rstrip())
+
 def parseSplashes(arg1, arg2):
 	with open(arg1 + "/splashes.json", "r") as file:
 		splashes = json.load(file)
-	outFile = open(arg2 + "/assets/minecraft/texts/splashes.txt", "w") # FIXME Make directories 1st 
+	outFile = open(arg2 + "/assets/minecraft/texts/splashes.txt", "w")
 	arr = splashes["splashes"]
 	for i in range(len(arr)):
 		outFile.write(arr[i]+"\n")
