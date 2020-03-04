@@ -1,7 +1,5 @@
-import sys
-import json
-import os
-import zipfile
+import sys, json, os, zipfile, csv
+from PIL import Image
 from shutil import copyfile
 
 def parseArgs():
@@ -23,12 +21,12 @@ def parseArgs():
 		else:
 			startConversion(sys.argv[1], sys.argv[2])
 
-def startConversion(arg1, arg2): # FIXME Handle missing files
+def startConversion(arg1, arg2):
 	arg1 = parseZip(arg1)
 	parseManifest(arg1, arg2)
 	genFolders(arg2)
-	parseSplashes(arg1, arg2)
-	copyfile((arg1 + "/credits/end.txt"), (arg2 + "/assets/minecraft/texts/end.txt")) # FIXME add to main copy function
+	parseTexts(arg1, arg2)
+	copyBlocks(arg1, arg2)
 
 def parseZip(arg1):
 	if arg1.lower().endswith(".zip"):
@@ -75,13 +73,51 @@ def genFolders(arg2):
 		for line in file:
 			os.makedirs(arg2 + line.rstrip())
 
-def parseSplashes(arg1, arg2):
-	with open(arg1 + "/splashes.json", "r") as file:
-		splashes = json.load(file)
+def parseTexts(arg1, arg2):
+	try:
+		with open(arg1 + "/splashes.json", "r") as file:
+			splashes = json.load(file)
+	except:
+		print("Unable to parse splashes")
+		return
 	outFile = open(arg2 + "/assets/minecraft/texts/splashes.txt", "w")
 	arr = splashes["splashes"]
 	for i in range(len(arr)):
 		outFile.write(arr[i]+"\n")
 	outFile.close()
+	try:
+		copyfile((arg1 + "/credits/end.txt"), (arg2 + "/assets/minecraft/texts/end.txt"))
+	except FileNotFoundError:
+		print("Could not find 'end.txt' file")
 
+def copyBlocks(arg1, arg2):
+	arg1 = arg1 + "/textures/blocks/"
+	arg2 = arg2 + "/assets/minecraft/textures/block/"
+	missingFiles = []
+	with open("diff.csv", "r") as csv_file: # Files differently named to their java counterpart
+		csv_reader = csv.reader(csv_file, delimiter=',')
+		for row in csv_reader:
+				try:
+					if row[0].lower().endswith(".tga"):
+						Image.open(arg1 + row[0]).save(arg2 + row[1])
+					else:
+						copyfile((arg1 + row[0]), (arg2 + row[1]))
+				except FileNotFoundError:
+					missingFiles.append(row[0])
+					continue
+	with open("same.txt", "r") as text_file: # Files with same name as their java counterpart
+		for line in text_file:
+			try:
+				if row[0].lower().endswith(".tga"):
+					Image.open(arg1 + line.rstrip()).save(arg2 + line.rstrip())
+				else:
+					copyfile((arg1 + line.rstrip()), (arg2 + line.rstrip()))
+			except FileNotFoundError:
+				missingFiles.append(line.rstrip())
+				continue
+	if len(missingFiles) != 0: # Outputs names of missing textures to text file
+		with open("missing.txt", "w") as missing:
+			missing.writelines(missingFiles)
+		print("\nSome files were missing from your texture pack and were not included.")
+		print("Please see the generated 'missing.txt' file for details.")
 parseArgs()
