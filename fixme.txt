@@ -30,6 +30,8 @@ tall_seagrass_bottom.png.mcmeta
 tall_seagrass_top.png.mcmeta
 water_flow.png.mcmeta
 water_still.png.mcmeta
+enchanted_item_glint.png.mcmeta
+pumpkinblur.png.mcmeta
 
 NEW TEXTURES
 conduit.png
@@ -43,6 +45,18 @@ water_overlay.png
 edition.png
 mojang.png
 map_background_checkerboard.png
+forcefield.png
+shadow.png
+underwater.png
+unknown_server.png
+vignette.png
+glowing.png
+dolphins_grace.png
+instant_damage.png
+instant_health.png
+luck.png
+saturation.png
+unluck.png
 
 WEIRD TEXTURES
 end_sky.png (colour)
@@ -51,3 +65,7 @@ snow.png
 ascii.png (slightly different chars)
 minecraft.png (different title)
 map_icons.png (different layout)
+enchanted_item_glint.png
+leather armour
+paintings (split up on java)
+particles (split up on java)
