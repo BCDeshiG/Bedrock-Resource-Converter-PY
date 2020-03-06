@@ -27,6 +27,12 @@ def startConversion(arg1, arg2):
 	genFolders(arg2)
 	parseTexts(arg1, arg2)
 	copyBlocks(arg1, arg2)
+	copyBreak(arg1, arg2)
+	print("\nConversion Complete")
+	print("Please see 'fixme.txt' for textures that need attention")
+	if os.path.isfile("missing.txt"):
+		print("\nSome files were missing from your texture pack and were not included.")
+		print("Please see the generated 'missing.txt' file for details.")
 
 def parseZip(arg1):
 	if arg1.lower().endswith(".zip"):
@@ -97,14 +103,14 @@ def copyBlocks(arg1, arg2):
 	with open("diff.csv", "r") as csv_file: # Files differently named to their java counterpart
 		csv_reader = csv.reader(csv_file, delimiter=',')
 		for row in csv_reader:
-				try:
-					if row[0].lower().endswith(".tga"):
-						Image.open(arg1 + row[0]).save(arg2 + row[1])
-					else:
-						copyfile((arg1 + row[0]), (arg2 + row[1]))
-				except FileNotFoundError:
-					missingFiles.append(row[0])
-					continue
+			try:
+				if row[0].lower().endswith(".tga"):
+					Image.open(arg1 + row[0]).save(arg2 + row[1])
+				else:
+					copyfile((arg1 + row[0]), (arg2 + row[1]))
+			except FileNotFoundError:
+				missingFiles.append(row[0] + "\n")
+				continue
 	with open("same.txt", "r") as text_file: # Files with same name as their java counterpart
 		for line in text_file:
 			try:
@@ -113,11 +119,27 @@ def copyBlocks(arg1, arg2):
 				else:
 					copyfile((arg1 + line.rstrip()), (arg2 + line.rstrip()))
 			except FileNotFoundError:
-				missingFiles.append(line.rstrip())
+				missingFiles.append(line)
 				continue
 	if len(missingFiles) != 0: # Outputs names of missing textures to text file
 		with open("missing.txt", "w") as missing:
 			missing.writelines(missingFiles)
-		print("\nSome files were missing from your texture pack and were not included.")
-		print("Please see the generated 'missing.txt' file for details.")
+
+
+def copyBreak(arg1, arg2):
+	arg1 = arg1 + "/textures/environment/"
+	arg2 = arg2 + "/assets/minecraft/textures/block/"
+	missingFiles = []
+	for i in range(10):
+		name = "destroy_stage_" + str(i) + ".png"
+		try:
+			copyfile((arg1 + name), (arg2 + name))
+		except FileNotFoundError:
+			missingFiles.append(name + "\n")
+			continue
+	if len(missingFiles) != 0: # Outputs names of missing textures to text file
+		with open("missing.txt", "a") as missing:
+			missing.writelines(missingFiles)
+
+
 parseArgs()
