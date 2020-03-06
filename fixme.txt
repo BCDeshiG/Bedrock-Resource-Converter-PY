@@ -40,3 +40,14 @@ redstone_dust_line0.png
 redstone_dust_line1.png
 redstone_dust_overlay.png
 water_overlay.png
+edition.png
+mojang.png
+map_background_checkerboard.png
+
+WEIRD TEXTURES
+end_sky.png (colour)
+rain.png
+snow.png
+ascii.png (slightly different chars)
+minecraft.png (different title)
+map_icons.png (different layout)

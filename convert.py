@@ -87,6 +87,10 @@ def genFolders(arg2):
 
 def parseTexts(arg1, arg2):
 	try:
+		copyfile((arg1 + "/credits/end.txt"), (arg2 + "/assets/minecraft/texts/end.txt"))
+	except FileNotFoundError:
+		print("Could not find 'end.txt' file")
+	try:
 		with open(arg1 + "/splashes.json", "r") as file:
 			splashes = json.load(file)
 	except:
@@ -97,10 +101,6 @@ def parseTexts(arg1, arg2):
 	for i in range(len(arr)):
 		outFile.write(arr[i]+"\n")
 	outFile.close()
-	try:
-		copyfile((arg1 + "/credits/end.txt"), (arg2 + "/assets/minecraft/texts/end.txt"))
-	except FileNotFoundError:
-		print("Could not find 'end.txt' file")
 
 def copyTextures(arg1, arg2):
 	missingFiles = []
