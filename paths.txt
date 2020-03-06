@@ -46,7 +46,7 @@
 /assets/minecraft/textures/environment/
 /assets/minecraft/textures/font/
 /assets/minecraft/textures/gui/advancements/
-/assets/minecraft/textures/gui/title/
+/assets/minecraft/textures/gui/title/background
 /assets/minecraft/textures/item/
 /assets/minecraft/textures/map/
 /assets/minecraft/textures/misc/
