@@ -57,6 +57,9 @@ instant_health.png
 luck.png
 saturation.png
 unluck.png
+glass_bottle.png
+spectral_arrow.png
+splash_potion.png
 
 WEIRD TEXTURES
 end_sky.png (colour)
@@ -69,3 +72,7 @@ enchanted_item_glint.png
 leather armour
 paintings (split up on java)
 particles (split up on java)
+firework star (split)
+leather overlay
+filled_map_markings.png (combined on java)
+banner pattern (split)

@@ -14,6 +14,8 @@
 /assets/minecraft/textures/entity/cow/
 /assets/minecraft/textures/entity/creeper/
 /assets/minecraft/textures/entity/end_crystal/
+/assets/minecraft/textures/entity/enderdragon
+/assets/minecraft/textures/entity/enderman
 /assets/minecraft/textures/entity/fish/
 /assets/minecraft/textures/entity/fox/
 /assets/minecraft/textures/entity/ghast/

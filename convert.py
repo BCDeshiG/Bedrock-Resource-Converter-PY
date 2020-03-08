@@ -34,6 +34,8 @@ def startConversion(arg1, arg2):
 	if os.path.isfile("missing.txt"):
 		os.remove("missing.txt")
 	copyTextures(arg1, arg2)
+	splitCompass(arg1, arg2, "watch_atlas.png")
+	splitCompass(arg1, arg2, "compass_atlas.png")
 	print("\nConversion Complete")
 	print("Please see 'fixme.txt' for textures that need attention")
 	if os.path.isfile("missing.txt"):
@@ -116,5 +118,19 @@ def copyTextures(arg1, arg2):
 				missingFiles.append(row[0] + "\n")
 				continue
 	checkMissing(missingFiles)
+
+def splitCompass(arg1,arg2,atlas):
+	arg2 += "/assets/minecraft/textures/item/"
+	try:
+		im = Image.open(arg1 + "/textures/items/" + atlas)
+		w,h = im.size
+		for i in range(h//w):
+			frame = im.crop((0,i*16,w,(i+1)*16))
+			if i < 10:
+				frame.save(arg2 + atlas.split("_")[0] + "_0" + str(i) + ".png")
+			else:
+				frame.save(arg2 + atlas.split("_")[0] + "_" + str(i) + ".png")
+	except FileNotFoundError:
+		print("Could not find '" + atlas + "' file")
 
 parseArgs()
