@@ -32,6 +32,20 @@ water_flow.png.mcmeta
 water_still.png.mcmeta
 enchanted_item_glint.png.mcmeta
 pumpkinblur.png.mcmeta
+villager/profession/butcher.png.mcmeta
+villager/profession/farmer.png.mcmeta
+villager/profession/fisherman.png.mcmeta
+villager/profession/fletcher.png.mcmeta
+villager/profession/librarian.png.mcmeta
+villager/profession/shepherd.png.mcmeta
+villager/type/desert.png.mcmeta
+villager/type/snow.png.mcmeta
+zombie_villager/profession/butcher.png.mcmeta
+zombie_villager/profession/farmer.png.mcmeta
+zombie_villager/profession/fisherman.png.mcmeta
+zombie_villager/profession/fletcher.png.mcmeta
+zombie_villager/profession/librarian.png.mcmeta
+zombie_villager/profession/shepherd.png.mcmeta
 
 NEW TEXTURES
 conduit.png
@@ -60,6 +74,20 @@ unluck.png
 glass_bottle.png
 spectral_arrow.png
 splash_potion.png
+christmas chests
+iron golem damage marks
+conduit (entity)
+caerbannog.png
+cat_collar.png
+wolf_collar.png
+bee_stinger.png
+illusioner.png
+arrow.png
+spectral_arrow.png
+tipped_arrow.png
+phantom_eyes.png
+spider_eyes.png
+enderman_eyes.png
 
 WEIRD TEXTURES
 end_sky.png (colour)
@@ -75,4 +103,17 @@ particles (split up on java)
 firework star (split)
 leather overlay
 filled_map_markings.png (combined on java)
-banner pattern (split)
+banner pattern (split items + texture)
+blaze.png (alpha)
+dolphin.png (model)
+fishhook.png (2d java)
+leadknot.png
+trident.png
+riptide.png
+double chests (split)
+sleeping foxes (split)
+ghast_shooting.png (alpha)
+sheep (split)
+drowned (split)
+beds (model)
+magmacube.png (alpha)
