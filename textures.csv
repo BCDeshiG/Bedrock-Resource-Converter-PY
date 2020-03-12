@@ -663,6 +663,7 @@
 /textures/models/armor/iron_2.png,/assets/minecraft/textures/models/armor/iron_layer_2.png
 /textures/models/armor/chain_1.png,/assets/minecraft/textures/models/armor/chain_layer_1.png
 /textures/models/armor/chain_2.png,/assets/minecraft/textures/models/armor/chain_layer_2.png
+/textures/models/armor/turtle_1.png,/assets/minecraft/textures/models/armor/turtle_layer_1.png
 /textures/models/armor/elytra.png,/assets/minecraft/textures/entity/elytra.png
 /textures/blocks/sand.png,/assets/minecraft/textures/gui/advancements/adventure.png
 /textures/blocks/end_stone.png,/assets/minecraft/textures/gui/advancements/end.png
@@ -1094,7 +1095,6 @@
 /textures/entity/parrot/parrot_red_blue.png,/assets/minecraft/textures/entity/parrot/parrot_red_blue.png
 /textures/entity/parrot/parrot_yellow_blue.png,/assets/minecraft/textures/entity/parrot/parrot_yellow_blue.png
 /textures/entity/pig/pig.png,/assets/minecraft/textures/entity/pig/pig.png
-/textures/entity/pig/pigzombie.png,/assets/minecraft/textures/entity/zombie_pigman.png
 /textures/entity/saddle.png,/assets/minecraft/textures/entity/pig/pig_saddle.png
 /textures/entity/rabbit/blackrabbit.png,/assets/minecraft/textures/entity/rabbit/black.png
 /textures/entity/rabbit/brown.png,/assets/minecraft/textures/entity/rabbit/brown.png
@@ -1126,10 +1126,6 @@
 /textures/entity/skeleton/stray.png,/assets/minecraft/textures/entity/skeleton/stray.png
 /textures/entity/skeleton/stray_overlay.png,/assets/minecraft/textures/entity/skeleton/stray_overlay.png
 /textures/entity/skeleton/wither_skeleton.png,/assets/minecraft/textures/entity/skeleton/wither_skeleton.png
-/textures/entity/skulls/creeper.png,/assets/minecraft/textures/entity/creeper/creeper.png
-/textures/entity/skulls/skeleton.png,/assets/minecraft/textures/entity/skeleton/skeleton.png
-/textures/entity/skulls/wither_skeleton.png,/assets/minecraft/textures/entity/skeleton/wither_skeleton.png
-/textures/entity/skulls/zombie.png,/assets/minecraft/textures/entity/zombie/zombie.png
 /textures/entity/slime/magmacube.tga,/assets/minecraft/textures/entity/slime/magmacube.png
 /textures/entity/slime/slime.png,/assets/minecraft/textures/entity/slime/slime.png
 /textures/entity/spider/cave_spider.tga,/assets/minecraft/textures/entity/spider/cave_spider.png
@@ -1193,3 +1189,5 @@
 /textures/entity/zombie_villager2/professions/stonemason.tga,/assets/minecraft/textures/entity/zombie_villager/profession/shepherd.png
 /textures/entity/zombie_villager2/professions/toolsmith.tga,/assets/minecraft/textures/entity/zombie_villager/profession/toolsmith.png
 /textures/entity/zombie_villager2/professions/weaponsmith.tga,/assets/minecraft/textures/entity/zombie_villager/profession/weaponsmith.png
+/textures/colormap/foliage.png,/assets/minecraft/textures/colormap/foliage.png
+/textures/colormap/grass.png,/assets/minecraft/textures/colormap/grass.png

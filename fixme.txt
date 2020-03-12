@@ -88,6 +88,7 @@ tipped_arrow.png
 phantom_eyes.png
 spider_eyes.png
 enderman_eyes.png
+paintings/back.png
 
 WEIRD TEXTURES
 end_sky.png (colour)
@@ -117,3 +118,4 @@ sheep (split)
 drowned (split)
 beds (model)
 magmacube.png (alpha)
+wolf_tame.png

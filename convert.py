@@ -36,6 +36,8 @@ def startConversion(arg1, arg2):
 	copyTextures(arg1, arg2)
 	splitCompass(arg1, arg2, "watch_atlas.png")
 	splitCompass(arg1, arg2, "compass_atlas.png")
+	splitPaintings(arg1, arg2)
+	fixTextures(arg1,arg2)
 	print("\nConversion Complete")
 	print("Please see 'fixme.txt' for textures that need attention")
 	if os.path.isfile("missing.txt"):
@@ -132,5 +134,58 @@ def splitCompass(arg1,arg2,atlas):
 				frame.save(arg2 + atlas.split("_")[0] + "_" + str(i) + ".png")
 	except FileNotFoundError:
 		print("Could not find '" + atlas + "' file")
+
+def splitPaintings(arg1,arg2):
+	arg1 += "/textures/painting/"
+	arg2 += "/assets/minecraft/textures/painting/"
+	# yh yh hardcoded paintings ik
+	x16P = [
+		"kebab.png","aztec.png","alban.png","aztec2.png",
+		"bomb.png","plant.png","wasteland.png"
+	] 
+	xWide = [
+		"pool.png","courbet.png","sea.png",
+		"sunset.png","creebet.png"
+	]
+	xTall = ["wanderer.png","graham.png"]
+	x32P = [
+		"match.png","bust.png","stage.png",
+		"void.png","skull_and_roses.png","wither.png"
+	]
+	x64P = ["pointer.png","pigscene.png","burning_skull.png"]
+	try:
+		kz = Image.open(arg1 + "kz.png")
+		splitPaintingsAux(kz, x16P, 0, 1, 1, arg2)
+		splitPaintingsAux(kz, xWide, 2, 2, 1, arg2)
+		splitPaintingsAux(kz, xTall, 4, 1, 2, arg2)
+		splitPaintingsAux(kz, x32P, 8, 2, 2, arg2)
+		splitPaintingsAux(kz, x64P, 12, 4, 4, arg2)
+		w,h = kz.size
+		kz.crop((0, (h//16)*6, (w//16)*4, (h//16)*8)).save(arg2 + "fighters.png")
+		kz.crop(((w//16)*12, (h//16)*4, w, (h//16)*7)).save(arg2 + "skeleton.png")
+		kz.crop(((w//16)*12, (h//16)*7, w, (h//16)*10)).save(arg2 + "donkey_kong.png")
+	except FileNotFoundError:
+		print("Could not find paintings texture")
+
+def splitPaintingsAux(kz, arr, qtop, qw, qh, arg2): # uses quantum sizes
+	q = kz.height//16 # quantum cell size
+	# qtop is the starting y coord of the images
+	# qw and qh are the width and height of each image
+	top = q * qtop
+	right = q * qw
+	bottom = top + (qh * q)
+	for i in range(len(arr)):
+		im = kz.crop((qw*i*q, top, right+(qw*i*q), bottom))
+		im.save(arg2 + arr[i])
+
+def fixTextures(arg1,arg2):
+	tex1 = arg1 + "/textures/entity/pig/pigzombie.png"
+	tex2 = arg2 + "/assets/minecraft/textures/entity/zombie_pigman.png"
+	try:
+		im = Image.open(tex1)
+		w,h = im.size
+		im.crop((0, 0, w, h*2)).save(tex2)
+	except FileNotFoundError:
+		print("Could not find pigman texture")
 
 parseArgs()
