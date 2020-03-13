@@ -99,13 +99,11 @@ minecraft.png (different title)
 map_icons.png (different layout)
 enchanted_item_glint.png
 leather armour
-paintings (split up on java)
 particles (split up on java)
 firework star (split)
 leather overlay
 filled_map_markings.png (combined on java)
 banner pattern (split items + texture)
-blaze.png (alpha)
 dolphin.png (model)
 fishhook.png (2d java)
 leadknot.png
@@ -113,9 +111,7 @@ trident.png
 riptide.png
 double chests (split)
 sleeping foxes (split)
-ghast_shooting.png (alpha)
 sheep (split)
 drowned (split)
-beds (model)
-magmacube.png (alpha)
+beds (bed feet)
 wolf_tame.png

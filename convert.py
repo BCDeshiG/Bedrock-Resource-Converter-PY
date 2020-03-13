@@ -37,6 +37,7 @@ def startConversion(arg1, arg2):
 	splitCompass(arg1, arg2, "watch_atlas.png")
 	splitCompass(arg1, arg2, "compass_atlas.png")
 	splitPaintings(arg1, arg2)
+	fixBeds(arg1, arg2)
 	fixTextures(arg1,arg2)
 	print("\nConversion Complete")
 	print("Please see 'fixme.txt' for textures that need attention")
@@ -178,13 +179,41 @@ def splitPaintingsAux(kz, arr, qtop, qw, qh, arg2): # uses quantum sizes
 		im = kz.crop((qw*i*q, top, right+(qw*i*q), bottom))
 		im.save(arg2 + arr[i])
 
-def fixTextures(arg1,arg2):
-	tex1 = arg1 + "/textures/entity/pig/pigzombie.png"
-	tex2 = arg2 + "/assets/minecraft/textures/entity/zombie_pigman.png"
+def fixBeds(arg1, arg2): # FIXME Bed Feet
+	arg1 += "/textures/entity/bed/"
+	arg2 += "/assets/minecraft/textures/entity/bed/"
+	beds = []
+	bedNames = os.listdir(arg1)
 	try:
-		im = Image.open(tex1)
+		for i in range(len(bedNames)):
+			beds.append(Image.open(arg1 + bedNames[i]))
+	except:
+		print("Could not load bed textures")
+		return
+	q = beds[0].height // 64 # Resize scale
+	for i in range(len(beds)):
+		temp = beds[i].crop((0,22*q,44*q,50*q))
+		bedCopy = beds[i].copy()
+		bedCopy.paste(temp, (0,28*q)) # Shift down 6 pixels
+		temp = Image.new("RGBA", (44*q,6*q))
+		bedCopy.paste(temp, (0,22*q)) # Delete old part
+
+		temp = beds[i].crop((22*q,0,38*q,6*q))
+		bedCopy.paste(temp, (22*q,22*q)) # Shift down into gap
+		temp = Image.new("RGBA", (16*q,6*q))
+		bedCopy.paste(temp, (22*q,0)) # Delete old part
+		try:
+			bedCopy.save(arg2 + bedNames[i])
+		except:
+			print("Could not save '" + bedNames[i] + "' texture")
+
+def fixTextures(arg1,arg2):
+	inn = arg1 + "/textures/entity/pig/pigzombie.png"
+	out = arg2 + "/assets/minecraft/textures/entity/zombie_pigman.png"
+	try:
+		im = Image.open(inn)
 		w,h = im.size
-		im.crop((0, 0, w, h*2)).save(tex2)
+		im.crop((0, 0, w, h*2)).save(out)
 	except FileNotFoundError:
 		print("Could not find pigman texture")
 
