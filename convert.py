@@ -43,6 +43,8 @@ def startConversion(arg1, arg2):
 	splitCompass(arg1, arg2, "compass_atlas.png")
 	splitPaintings(arg1, arg2)
 	fixBeds(arg1, arg2)
+	fixChests(arg1, arg2, "double_normal.png")
+	fixChests(arg1, arg2, "trapped_double.png")
 	fixTextures(arg1, arg2)
 	print("\nConversion Complete")
 	print("Please see 'fixme.txt' for textures that need attention")
@@ -211,6 +213,58 @@ def fixBeds(arg1, arg2): # FIXME Bed Feet
 			bedCopy.save(arg2 + bedNames[i])
 		except:
 			print("Could not save '" + bedNames[i] + "' file")
+
+def fixChests(arg1, arg2, chest):
+	arg1 += "/textures/entity/chest/"
+	arg2 += "/assets/minecraft/textures/entity/chest/"
+	chestType = chest.replace("double","")
+	chestType = chestType.replace("_","")
+	chestType = chestType.replace(".png","")
+	try:
+		im = Image.open(arg1 + chest)
+		w,h = im.size
+		left = Image.new("RGBA", (w//2, h))
+		right = Image.new("RGBA", (w//2, h))
+		q = h//64 # Resize scale
+
+		# Right side of chest
+		temp = im.crop((0, 0, 29*q, 43*q))
+		right.paste(temp, (0, 0))
+		temp = right.crop((14*q, 0, 29*q, 14*q))
+		right.paste(temp, (29*q, 0))
+		temp = right.crop((14*q, 19*q, 29*q, 33*q))
+		right.paste(temp, (29*q, 19*q))
+		temp = im.crop((44*q, 0, 59*q, 14*q))
+		right.paste(temp, (14*q, 0))
+		temp = im.crop((44*q, 19*q, 59*q, 33*q))
+		right.paste(temp, (14*q, 19*q))
+		temp = im.crop((73*q, 14*q, 88*q, 19*q))
+		right.paste(temp, (43*q, 14*q))
+		temp = im.crop((73*q, 33*q, 88*q, 43*q))
+		right.paste(temp, (43*q, 33*q))
+		right.save(arg2 + chestType + "_right.png")
+
+		# Left side of chest
+		temp = im.crop((0, 0, 6*q, 5*q))
+		left.paste(temp, (0, 0))
+		temp = im.crop((29*q, 14*q, 73*q, 19*q))
+		left.paste(temp.rotate(180), (14*q, 14*q))
+		temp = im.crop((29*q, 33*q, 73*q, 43*q))
+		left.paste(temp.rotate(180), (14*q, 33*q))
+		temp = im.crop((29*q, 19*q, 44*q, 33*q))
+		left.paste(temp, (29*q, 19*q))
+		temp = im.crop((59*q, 19*q, 74*q, 33*q))
+		left.paste(temp, (14*q, 19*q))
+		temp = im.crop((59*q, 0, 74*q, 14*q))
+		left.paste(temp, (14*q, 0))
+		temp = im.crop((29*q, 0, 44*q, 14*q))
+		left.paste(temp, (29*q, 0))
+		temp = Image.new("RGBA", (15*q, 14*q))
+		left.paste(temp, (44*q, 0))
+		left.paste(temp, (44*q, 19*q))
+		left.save(arg2 + chestType + "_left.png")
+	except:
+		print("Could not load '" + chest + "' file")
 
 def fixTextures(arg1, arg2):
 	arg1 += "/textures/entity/"
