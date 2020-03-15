@@ -982,6 +982,7 @@
 /textures/entity/beacon_beam.png,/assets/minecraft/textures/entity/end_gateway_beam.png
 /textures/entity/pillager.png,/assets/minecraft/textures/entity/illager/pillager.png
 /textures/entity/vindicator.png,/assets/minecraft/textures/entity/illager/vindicator.png
+/textures/entity/lead_knot.png,/assets/minecraft/textures/entity/lead_knot.png
 /textures/entity/bee/bee.png,/assets/minecraft/textures/entity/bee/bee.png
 /textures/entity/bee/bee_angry.png,/assets/minecraft/textures/entity/bee/bee_angry.png
 /textures/entity/bee/bee_angry_nectar.png,/assets/minecraft/textures/entity/bee/bee_angry_nectar.png
@@ -1164,8 +1165,6 @@
 /textures/entity/wither_boss/wither_invulnerable.png,/assets/minecraft/textures/entity/wither/wither_invulnerable.png
 /textures/entity/wolf/wolf.png,/assets/minecraft/textures/entity/wolf/wolf.png
 /textures/entity/wolf/wolf_angry.png,/assets/minecraft/textures/entity/wolf/wolf_angry.png
-/textures/entity/zombie/husk.png,/assets/minecraft/textures/entity/zombie/husk.png
-/textures/entity/zombie/zombie.png,/assets/minecraft/textures/entity/zombie/zombie.png
 /textures/entity/zombie_villager/zombie_villager.png,/assets/minecraft/textures/entity/zombie/zombie_villager.png
 /textures/entity/zombie_villager2/zombie-villager.png,/assets/minecraft/textures/entity/zombie_villager/zombie_villager.png
 /textures/entity/zombie_villager2/biomes/biome-desert-zombie.png,/assets/minecraft/textures/entity/zombie_villager/type/desert.png

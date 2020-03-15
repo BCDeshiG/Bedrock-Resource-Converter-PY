@@ -106,12 +106,8 @@ filled_map_markings.png (combined on java)
 banner pattern (split items + texture)
 dolphin.png (model)
 fishhook.png (2d java)
-leadknot.png
-trident.png
 riptide.png
 double chests (split)
 sleeping foxes (split)
-sheep (split)
-drowned (split)
 beds (bed feet)
 wolf_tame.png

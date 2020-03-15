@@ -26,6 +26,11 @@ def checkMissing(missingFiles):
 		with open("missing.txt", "a") as missing:
 			missing.writelines(missingFiles)
 
+def fixSpace(arg1, arg2, inn, out):
+	im = Image.open(arg1 + inn)
+	w,h = im.size
+	im.crop((0, 0, w, h*2)).save(arg2 +out)
+
 def startConversion(arg1, arg2):
 	arg1 = parseZip(arg1)
 	parseManifest(arg1, arg2)
@@ -38,7 +43,7 @@ def startConversion(arg1, arg2):
 	splitCompass(arg1, arg2, "compass_atlas.png")
 	splitPaintings(arg1, arg2)
 	fixBeds(arg1, arg2)
-	fixTextures(arg1,arg2)
+	fixTextures(arg1, arg2)
 	print("\nConversion Complete")
 	print("Please see 'fixme.txt' for textures that need attention")
 	if os.path.isfile("missing.txt"):
@@ -53,7 +58,7 @@ def parseZip(arg1):
 	else:
 		return arg1
 	arg1 = os.path.splitext(arg1)[0]
-	with zipfile.ZipFile(arg1 + fileExt,"r") as pack:
+	with zipfile.ZipFile(arg1 + fileExt, "r") as pack:
 		pack.extractall(arg1)
 	try:
 		file = open(arg1 + "/manifest.json") # Checks if manifest in root folder
@@ -122,13 +127,13 @@ def copyTextures(arg1, arg2):
 				continue
 	checkMissing(missingFiles)
 
-def splitCompass(arg1,arg2,atlas):
+def splitCompass(arg1, arg2, atlas):
 	arg2 += "/assets/minecraft/textures/item/"
 	try:
 		im = Image.open(arg1 + "/textures/items/" + atlas)
 		w,h = im.size
 		for i in range(h//w):
-			frame = im.crop((0,i*16,w,(i+1)*16))
+			frame = im.crop((0, i*16, w, (i+1)*16))
 			if i < 10:
 				frame.save(arg2 + atlas.split("_")[0] + "_0" + str(i) + ".png")
 			else:
@@ -136,24 +141,24 @@ def splitCompass(arg1,arg2,atlas):
 	except FileNotFoundError:
 		print("Could not find '" + atlas + "' file")
 
-def splitPaintings(arg1,arg2):
+def splitPaintings(arg1, arg2):
 	arg1 += "/textures/painting/"
 	arg2 += "/assets/minecraft/textures/painting/"
 	# yh yh hardcoded paintings ik
 	x16P = [
-		"kebab.png","aztec.png","alban.png","aztec2.png",
-		"bomb.png","plant.png","wasteland.png"
+		"kebab.png", "aztec.png", "alban.png", "aztec2.png",
+		"bomb.png", "plant.png", "wasteland.png"
 	] 
 	xWide = [
-		"pool.png","courbet.png","sea.png",
-		"sunset.png","creebet.png"
+		"pool.png", "courbet.png", "sea.png",
+		"sunset.png", "creebet.png"
 	]
-	xTall = ["wanderer.png","graham.png"]
+	xTall = ["wanderer.png", "graham.png"]
 	x32P = [
-		"match.png","bust.png","stage.png",
-		"void.png","skull_and_roses.png","wither.png"
+		"match.png", "bust.png", "stage.png",
+		"void.png", "skull_and_roses.png", "wither.png"
 	]
-	x64P = ["pointer.png","pigscene.png","burning_skull.png"]
+	x64P = ["pointer.png", "pigscene.png", "burning_skull.png"]
 	try:
 		kz = Image.open(arg1 + "kz.png")
 		splitPaintingsAux(kz, x16P, 0, 1, 1, arg2)
@@ -192,29 +197,58 @@ def fixBeds(arg1, arg2): # FIXME Bed Feet
 		return
 	q = beds[0].height // 64 # Resize scale
 	for i in range(len(beds)):
-		temp = beds[i].crop((0,22*q,44*q,50*q))
+		temp = beds[i].crop((0, 22*q, 44*q, 50*q))
 		bedCopy = beds[i].copy()
-		bedCopy.paste(temp, (0,28*q)) # Shift down 6 pixels
-		temp = Image.new("RGBA", (44*q,6*q))
-		bedCopy.paste(temp, (0,22*q)) # Delete old part
+		bedCopy.paste(temp, (0, 28*q)) # Shift down 6 pixels
+		temp = Image.new("RGBA", (44*q, 6*q))
+		bedCopy.paste(temp, (0, 22*q)) # Delete old part
 
-		temp = beds[i].crop((22*q,0,38*q,6*q))
-		bedCopy.paste(temp, (22*q,22*q)) # Shift down into gap
-		temp = Image.new("RGBA", (16*q,6*q))
-		bedCopy.paste(temp, (22*q,0)) # Delete old part
+		temp = beds[i].crop((22*q, 0, 38*q, 6*q))
+		bedCopy.paste(temp, (22*q, 22*q)) # Shift down into gap
+		temp = Image.new("RGBA", (16*q, 6*q))
+		bedCopy.paste(temp, (22*q, 0)) # Delete old part
 		try:
 			bedCopy.save(arg2 + bedNames[i])
 		except:
-			print("Could not save '" + bedNames[i] + "' texture")
+			print("Could not save '" + bedNames[i] + "' file")
 
-def fixTextures(arg1,arg2):
-	inn = arg1 + "/textures/entity/pig/pigzombie.png"
-	out = arg2 + "/assets/minecraft/textures/entity/zombie_pigman.png"
+def fixTextures(arg1, arg2):
+	arg1 += "/textures/entity/"
+	arg2 += "/assets/minecraft/textures/entity/"
+	inn = ["zombie/zombie.png", "zombie/husk.png", "pig/pigzombie.png"]
+	out = ["zombie/zombie.png", "zombie/husk.png", "zombie_pigman.png"]
+	for i in range(len(inn)):
+		try:
+			fixSpace(arg1, arg2, inn[i], out[i])
+		except FileNotFoundError:
+			print("Could not find '" + inn[i] + "' file")
+	inn = arg1 + "zombie/drowned.tga"
+	out = arg2 + "zombie/"
+	try:
+		drowned = Image.open(inn)
+		w,h = drowned.size
+		q = w//64 # Resize scale
+		drowned.save(out + "drowned.png")
+		outer = Image.new("RGBA", (w, h))
+		temp = drowned.crop((32*q, 0, w, 16*q)) # Drowned head
+		outer.paste(temp, (0, 0))
+		temp = drowned.crop((0, 32*q, 56*q, 48*q)) # Drowned upper body
+		outer.paste(temp, (0, 16*q))
+		temp = drowned.crop((0, 48*q, 16*q, w)) # Drowned lower left
+		outer.paste(temp, (16*q, 48*q))
+		temp = drowned.crop((48*q, 48*q, w, w)) # Drowned lower right
+		outer.paste(temp, (32*q, 48*q))
+		outer.save(out + "drowned_outer_layer.png")
+	except FileNotFoundError:
+		print("Could not find drowned texture")
+	inn = arg1 + "sheep/sheep.tga"
+	out = arg2 + "sheep/"
 	try:
 		im = Image.open(inn)
 		w,h = im.size
-		im.crop((0, 0, w, h*2)).save(out)
+		im.crop((0, 0, w, h//2)).save(out + "sheep.png")
+		im.crop((0, h//2, w, h)).save(out + "sheep_fur.png")
 	except FileNotFoundError:
-		print("Could not find pigman texture")
+		print("Could not find sheep texture")
 
 parseArgs()
