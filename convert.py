@@ -1,3 +1,4 @@
+#!/bin/env python3
 import sys, json, os, zipfile, csv
 from PIL import Image
 from shutil import copyfile
@@ -68,7 +69,7 @@ def parseZip(arg1):
 	except:
 		for root, dirs, files in os.walk(arg1):
 			if "manifest.json" in files: # Find manifest
-				arg1 = root + "\\" # Navigate to where manifest is
+				arg1 = root # Navigate to where manifest is
 	return arg1
 
 def parseManifest(arg1, arg2):
