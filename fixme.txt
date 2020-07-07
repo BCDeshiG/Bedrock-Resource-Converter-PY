@@ -89,6 +89,8 @@ phantom_eyes.png
 spider_eyes.png
 enderman_eyes.png
 paintings/back.png
+piglin_leather_layer_1.png
+piglin_leather_layer_1_overlay.png
 
 WEIRD TEXTURES
 end_sky.png (colour)
@@ -111,3 +113,6 @@ double chests (split)
 sleeping foxes (split)
 beds (bed feet)
 wolf_tame.png
+chain.png (combined)
+piglins (model)
+striders (seperate saddle)

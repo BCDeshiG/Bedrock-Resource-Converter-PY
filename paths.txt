@@ -20,12 +20,14 @@
 /assets/minecraft/textures/entity/fox/
 /assets/minecraft/textures/entity/ghast/
 /assets/minecraft/textures/entity/horse/armor/
+/assets/minecraft/textures/entity/hoglin/
 /assets/minecraft/textures/entity/illager/
 /assets/minecraft/textures/entity/iron_golem/
 /assets/minecraft/textures/entity/llama/decor/
 /assets/minecraft/textures/entity/panda/
 /assets/minecraft/textures/entity/parrot/
 /assets/minecraft/textures/entity/pig/
+/assets/minecraft/textures/entity/piglin/
 /assets/minecraft/textures/entity/projectiles/
 /assets/minecraft/textures/entity/rabbit/
 /assets/minecraft/textures/entity/sheep/
@@ -35,6 +37,7 @@
 /assets/minecraft/textures/entity/skeleton/
 /assets/minecraft/textures/entity/slime/
 /assets/minecraft/textures/entity/spider/
+/assets/minecraft/textures/entity/strider/
 /assets/minecraft/textures/entity/turtle/
 /assets/minecraft/textures/entity/villager/profession/
 /assets/minecraft/textures/entity/villager/profession_level/

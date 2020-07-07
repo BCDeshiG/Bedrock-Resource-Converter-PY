@@ -1,4 +1,3 @@
-#!/bin/env python3
 import sys, json, os, zipfile, csv
 from PIL import Image
 from shutil import copyfile
@@ -104,12 +103,12 @@ def parseTexts(arg1, arg2):
 	except FileNotFoundError:
 		print("Could not find 'end.txt' file")
 	try:
-		with open(arg1 + "/splashes.json", "r") as file:
+		with open(arg1 + "/splashes.json", "r", encoding="utf-8") as file:
 			splashes = json.load(file)
 	except:
 		print("Unable to parse splashes")
 		return
-	outFile = open(arg2 + "/assets/minecraft/texts/splashes.txt", "w")
+	outFile = open(arg2 + "/assets/minecraft/texts/splashes.txt", "w", encoding="utf-8")
 	arr = splashes["splashes"]
 	for i in range(len(arr)):
 		outFile.write(arr[i]+"\n")
@@ -191,8 +190,8 @@ def fixBeds(arg1, arg2): # FIXME Bed Feet
 	arg1 += "/textures/entity/bed/"
 	arg2 += "/assets/minecraft/textures/entity/bed/"
 	beds = []
-	bedNames = os.listdir(arg1)
 	try:
+		bedNames = os.listdir(arg1)
 		for i in range(len(bedNames)):
 			beds.append(Image.open(arg1 + bedNames[i]))
 	except:
@@ -270,8 +269,8 @@ def fixChests(arg1, arg2, chest):
 def fixTextures(arg1, arg2):
 	arg1 += "/textures/entity/"
 	arg2 += "/assets/minecraft/textures/entity/"
-	inn = ["zombie/zombie.png", "zombie/husk.png", "pig/pigzombie.png"]
-	out = ["zombie/zombie.png", "zombie/husk.png", "zombie_pigman.png"]
+	inn = ["zombie/zombie.png", "zombie/husk.png"]
+	out = ["zombie/zombie.png", "zombie/husk.png"]
 	for i in range(len(inn)):
 		try:
 			fixSpace(arg1, arg2, inn[i], out[i])
