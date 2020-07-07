@@ -29,7 +29,7 @@ def checkMissing(missingFiles):
 def fixSpace(arg1, arg2, inn, out):
 	im = Image.open(arg1 + inn)
 	w,h = im.size
-	im.crop((0, 0, w, h*2)).save(arg2 +out)
+	im.crop((0, 0, w, h*2)).save(arg2 + out)
 
 def startConversion(arg1, arg2):
 	arg1 = parseZip(arg1)
@@ -276,6 +276,25 @@ def fixTextures(arg1, arg2):
 			fixSpace(arg1, arg2, inn[i], out[i])
 		except FileNotFoundError:
 			print("Could not find '" + inn[i] + "' file")
+
+	inn = ["piglin/piglin.png", "piglin/zombie_piglin.png"]
+	out = ["piglin/piglin.png", "piglin/zombified_piglin.png"]
+	for i in range(len(inn)):
+		try:
+			piglin = Image.open(arg1 + inn[i])
+			w,h = piglin.size
+			q = w//128 # Resize scale
+			bit1 = piglin.crop((57*q, 22*q, 67*q, 31*q))
+			bit2 = piglin.crop((57*q, 38*q, 67*q, 47*q))
+			piglin.paste(bit1, (39*q, 6*q))
+			piglin.paste(bit2, (51*q, 6*q))
+			temp = Image.new("RGBA", (10*q, 9*q)) # Delete old bits
+			piglin.paste(temp, (57*q, 22*q))
+			piglin.paste(temp, (57*q, 38*q))
+			piglin.crop((0, 0, w//2, h//2)).save(arg2 + out[i])
+		except FileNotFoundError:
+			print("Could not find '" + inn[i] + "' file")
+
 	inn = arg1 + "zombie/drowned.tga"
 	out = arg2 + "zombie/"
 	try:
@@ -295,6 +314,7 @@ def fixTextures(arg1, arg2):
 		outer.save(out + "drowned_outer_layer.png")
 	except FileNotFoundError:
 		print("Could not find drowned texture")
+
 	inn = arg1 + "sheep/sheep.tga"
 	out = arg2 + "sheep/"
 	try:
