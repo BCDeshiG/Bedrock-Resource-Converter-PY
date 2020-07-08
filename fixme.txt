@@ -115,4 +115,3 @@ beds (bed feet)
 wolf_tame.png
 chain.png (combined)
 striders (seperate saddle)
-hoglins (missing tusk)

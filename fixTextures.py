@@ -141,6 +141,19 @@ def fixSheep(arg1, arg2):
 	except FileNotFoundError:
 		print("Could not find sheep texture")
 
+def fixHoglins(arg1, arg2, hog):
+	arg1 += "/textures/entity/" + os.path.splitext(hog)[0] + "/"
+	arg2 += "/assets/minecraft/textures/entity/hoglin/"
+	try:
+		hoglin = Image.open(arg1 + hog)
+		w,h = hoglin.size
+		q = w//128 # Resize scale
+		tusk = hoglin.crop((1*q, 13*q, 9*q, 26*q))
+		hoglin.paste(tusk, (10*q, 13*q))
+		hoglin.save(arg2 + hog)
+	except FileNotFoundError:
+		print("Could not find '" + hog + "' file")
+
 def fixes(arg1, arg2):
 	fixBeds(arg1, arg2)
 	fixChests(arg1, arg2, "double_normal.png")
@@ -151,3 +164,5 @@ def fixes(arg1, arg2):
 	fixPiglins(arg1, arg2, "zombie_piglin.png", "zombified_piglin.png")
 	fixDrowned(arg1, arg2)
 	fixSheep(arg1, arg2)
+	fixHoglins(arg1, arg2, "hoglin.png")
+	fixHoglins(arg1, arg2, "zoglin.png")
