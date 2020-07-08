@@ -1,5 +1,7 @@
 bedrock/
 java/
+__pycache__/
 missing.txt
 *.zip
 *.mcpack
+*.pyc
