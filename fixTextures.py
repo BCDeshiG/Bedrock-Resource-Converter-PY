@@ -154,6 +154,48 @@ def fixHoglins(arg1, arg2, hog):
 	except FileNotFoundError:
 		print("Could not find '" + hog + "' file")
 
+def fixFoxes(arg1, arg2, fox):
+	inn = arg1 + "/textures/entity/fox/"
+	out = arg2 + "/assets/minecraft/textures/entity/fox/"
+	try:
+		im = Image.open(inn + fox)
+		w,h = im.size
+		q = w//64 # Resize scale
+		woke = Image.new("RGBA", (48*q, 32*q)) # Awake texture
+		temp = im.crop((28*q, 0, 46*q, 14*q)) # Tail
+		woke.paste(temp, (30*q, 0))
+		temp = im.crop((30*q, 15*q, 54*q, h)) # Body
+		woke.paste(temp, (24*q, 15*q))
+		temp = im.crop((22*q, 24*q, 30*q, h)) # Foot
+		woke.paste(temp, (4*q, 24*q))
+		temp = im.crop((14*q, 24*q, 22*q, h)) # Other Foot
+		woke.paste(temp, (13*q, 24*q))
+		temp = im.crop((0, 24*q, 14*q, 29*q)) # Nose
+		woke.paste(temp, (6*q, 18*q))
+		temp = im.crop((0, 0, 6*q, 3*q)) # Ear
+		woke.paste(temp, (8*q, q))
+		temp = im.crop((22*q, 0, 28*q, 3*q)) # Other Ear
+		woke.paste(temp, (15*q, q))
+		slep = woke.copy() # Asleep texture
+		temp = im.crop((0, 0, 28*q, 12*q)) # Awake Head
+		woke.paste(temp, (q, 5*q))
+		temp = im.crop((0, 12*q, 28*q, 24*q)) # Asleep Head
+		slep.paste(temp, (q, 5*q))
+		# Fix extra ears from pasting head
+		temp = Image.new("RGBA", (6*q, 3*q))
+		woke.paste(temp, (q, 5*q))
+		woke.paste(temp, (23*q, 5*q))
+		slep.paste(temp, (q, 5*q))
+		slep.paste(temp, (23*q, 5*q))
+		# Save images
+		if fox == "arctic_fox.png":
+			fox = "snow_fox.png"
+		woke.save(out + fox)
+		fox = os.path.splitext(fox)[0] + "_sleep.png"
+		slep.save(out + fox)
+	except FileNotFoundError:
+		print("Could not find '" + fox + "' file")
+
 def fixes(arg1, arg2):
 	fixBeds(arg1, arg2)
 	fixChests(arg1, arg2, "double_normal.png")
@@ -166,3 +208,5 @@ def fixes(arg1, arg2):
 	fixSheep(arg1, arg2)
 	fixHoglins(arg1, arg2, "hoglin.png")
 	fixHoglins(arg1, arg2, "zoglin.png")
+	fixFoxes(arg1, arg2, "fox.png")
+	fixFoxes(arg1, arg2, "arctic_fox.png")

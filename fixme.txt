@@ -109,8 +109,6 @@ banner pattern (split items + texture)
 dolphin.png (model)
 fishhook.png (2d java)
 riptide.png
-double chests (split)
-sleeping foxes (split)
 beds (bed feet)
 wolf_tame.png
 chain.png (combined)
