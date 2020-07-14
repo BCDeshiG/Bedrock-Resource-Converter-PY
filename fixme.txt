@@ -78,8 +78,6 @@ christmas chests
 iron golem damage marks
 conduit (entity)
 caerbannog.png
-cat_collar.png
-wolf_collar.png
 bee_stinger.png
 illusioner.png
 arrow.png
@@ -110,6 +108,5 @@ dolphin.png (model)
 fishhook.png (2d java)
 riptide.png
 beds (bed feet)
-wolf_tame.png
 chain.png (combined)
 striders (seperate saddle)

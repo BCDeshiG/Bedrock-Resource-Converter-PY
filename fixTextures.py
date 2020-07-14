@@ -196,6 +196,50 @@ def fixFoxes(arg1, arg2, fox):
 	except FileNotFoundError:
 		print("Could not find '" + fox + "' file")
 
+def fixDog(arg1, arg2):
+	inn = arg1 + "/textures/entity/wolf/"
+	out = arg2 + "/assets/minecraft/textures/entity/wolf/"
+	try:
+		dog = Image.open(inn + "wolf_tame.tga")
+		w,h = dog.size
+		q = w//64 # Resize scale
+		mask = Image.open(inn + "wolf.png").getchannel("A")
+		dog.putalpha(mask)
+		dog.save(out + "wolf_tame.png")
+		collar = dog.crop((28*q, 0, 36*q, 7*q))
+		temp = Image.new("RGBA", (6*q, 5*q)) # Delete middle
+		collar.paste(temp, (q, q))
+		temp = Image.new("RGBA", (w,h))
+		temp.paste(collar, (28*q, 0))
+		temp.save(out + "wolf_collar.png")
+	except FileNotFoundError:
+		print("Could not find wolf texture")
+	except ValueError:
+		print("Please ensure that the wolf texture is in 'RGBA' format")
+
+def fixCat(arg1, arg2):
+	inn = arg1 + "/textures/entity/cat/"
+	out = arg2 + "/assets/minecraft/textures/entity/cat/cat_collar.png"
+	try:
+		catArr = os.listdir(inn) # List of cat textures
+		tameArr = [] # List of tamed cat textures
+		for i in range(len(catArr)):
+			if "tame" in catArr[i]:
+				tameArr.append(catArr[i])
+		tame = Image.open(inn + tameArr[0]) # Doesn't need to be specific
+		w,h = tame.size
+		q = w//64 # Resize scale
+		collar = Image.new("RGBA", (w,h))
+		part1 = (20*q, 6*q, 24*q, 7*q)
+		collar.paste(tame.crop(part1), part1)
+		part2 = (26*q, 3*q, 30*q, 4*q)
+		collar.paste(tame.crop(part2), part2)
+		part3 = (32*q, 6*q, 40*q, 7*q)
+		collar.paste(tame.crop(part3), part3)
+		collar.save(out)
+	except FileNotFoundError:
+		print("Could not find cat texture")
+
 def fixes(arg1, arg2):
 	fixBeds(arg1, arg2)
 	fixChests(arg1, arg2, "double_normal.png")
@@ -210,3 +254,5 @@ def fixes(arg1, arg2):
 	fixHoglins(arg1, arg2, "zoglin.png")
 	fixFoxes(arg1, arg2, "fox.png")
 	fixFoxes(arg1, arg2, "arctic_fox.png")
+	fixDog(arg1, arg2)
+	fixCat(arg1, arg2)
