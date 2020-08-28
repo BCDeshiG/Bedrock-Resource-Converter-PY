@@ -1265,7 +1265,7 @@
 /textures/entity/hoglin/hoglin.png,/assets/minecraft/textures/entity/hoglin/hoglin.png
 /textures/entity/piglin/piglin.png,/assets/minecraft/textures/entity/piglin/piglin.png
 /textures/entity/piglin/piglin_brute.png,/assets/minecraft/textures/entity/piglin/piglin_brute.png
-/textures/entity/piglin/zombie_piglin.png,/assets/minecraft/textures/entity/piglin/zombie_piglin.png
+/textures/entity/piglin/zombie_piglin.png,/assets/minecraft/textures/entity/piglin/zombified_piglin.png
 /textures/entity/zoglin/zoglin.png,/assets/minecraft/textures/entity/hoglin/zoglin.png
 /textures/entity/strider/strider.png,/assets/minecraft/textures/entity/strider/strider.png
 /textures/entity/strider/strider_suffocated.png,/assets/minecraft/textures/entity/strider/strider_cold.png
