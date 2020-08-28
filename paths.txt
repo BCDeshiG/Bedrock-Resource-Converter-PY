@@ -1,4 +1,4 @@
-/assets/minecraft/texts
+/assets/minecraft/texts/
 /assets/minecraft/textures/block/
 /assets/minecraft/textures/colormap/
 /assets/minecraft/textures/entity/armorstand/
@@ -14,8 +14,8 @@
 /assets/minecraft/textures/entity/cow/
 /assets/minecraft/textures/entity/creeper/
 /assets/minecraft/textures/entity/end_crystal/
-/assets/minecraft/textures/entity/enderdragon
-/assets/minecraft/textures/entity/enderman
+/assets/minecraft/textures/entity/enderdragon/
+/assets/minecraft/textures/entity/enderman/
 /assets/minecraft/textures/entity/fish/
 /assets/minecraft/textures/entity/fox/
 /assets/minecraft/textures/entity/ghast/
@@ -50,8 +50,8 @@
 /assets/minecraft/textures/entity/zombie_villager/type/
 /assets/minecraft/textures/environment/
 /assets/minecraft/textures/font/
-/assets/minecraft/textures/gui/advancements/
-/assets/minecraft/textures/gui/title/background
+/assets/minecraft/textures/gui/advancements/backgrounds/
+/assets/minecraft/textures/gui/title/background/
 /assets/minecraft/textures/item/
 /assets/minecraft/textures/map/
 /assets/minecraft/textures/misc/
