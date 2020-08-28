@@ -91,24 +91,6 @@ def fixZombies(arg1, arg2, zombie):
 	except FileNotFoundError:
 		print("Could not find '" + zombie + "' file")
 
-def fixPiglins(arg1, arg2, inn, out):
-	arg1 += "/textures/entity/piglin/"
-	arg2 += "/assets/minecraft/textures/entity/piglin/"
-	try:
-		piglin = Image.open(arg1 + inn)
-		w,h = piglin.size
-		q = w//128 # Resize scale
-		ear1 = piglin.crop((57*q, 22*q, 67*q, 31*q))
-		ear2 = piglin.crop((57*q, 38*q, 67*q, 47*q))
-		piglin.paste(ear1, (39*q, 6*q))
-		piglin.paste(ear2, (51*q, 6*q))
-		temp = Image.new("RGBA", (10*q, 9*q)) # Delete old bits
-		piglin.paste(temp, (57*q, 22*q))
-		piglin.paste(temp, (57*q, 38*q))
-		piglin.crop((0, 0, w//2, h//2)).save(arg2 + out)
-	except FileNotFoundError:
-		print("Could not find '" + inn + "' file")
-
 def fixDrowned(arg1, arg2):
 	inn = arg1 + "/textures/entity/zombie/drowned.tga"
 	out = arg2 + "/assets/minecraft/textures/entity/zombie/"
@@ -246,8 +228,6 @@ def fixes(arg1, arg2):
 	fixChests(arg1, arg2, "trapped_double.png")
 	fixZombies(arg1, arg2, "zombie.png")
 	fixZombies(arg1, arg2, "husk.png")
-	fixPiglins(arg1, arg2, "piglin.png", "piglin.png")
-	fixPiglins(arg1, arg2, "zombie_piglin.png", "zombified_piglin.png")
 	fixDrowned(arg1, arg2)
 	fixSheep(arg1, arg2)
 	fixHoglins(arg1, arg2, "hoglin.png")
