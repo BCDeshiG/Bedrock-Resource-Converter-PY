@@ -71,8 +71,7 @@ instant_health.png
 luck.png
 saturation.png
 unluck.png
-glass_bottle.png
-spectral_arrow.png
+spectral_arrow.png (item)
 splash_potion.png
 christmas chests
 iron golem damage marks
@@ -80,8 +79,8 @@ conduit (entity)
 caerbannog.png
 bee_stinger.png
 illusioner.png
-arrow.png
-spectral_arrow.png
+arrow.png (entity)
+spectral_arrow.png (entity)
 tipped_arrow.png
 phantom_eyes.png
 spider_eyes.png
@@ -89,6 +88,10 @@ enderman_eyes.png
 paintings/back.png
 piglin_leather_layer_1.png
 piglin_leather_layer_1_overlay.png
+candles
+potted azalea
+sculk sensor
+spyglass_model.png
 
 WEIRD TEXTURES
 end_sky.png (colour)
@@ -110,3 +113,4 @@ riptide.png
 beds (bed feet)
 chain.png (combined)
 striders (seperate saddle)
+glow squid

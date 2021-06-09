@@ -1,6 +1,7 @@
 /assets/minecraft/texts/
 /assets/minecraft/textures/block/
 /assets/minecraft/textures/colormap/
+/assets/minecraft/textures/entity/axolotl/
 /assets/minecraft/textures/entity/armorstand/
 /assets/minecraft/textures/entity/banner/
 /assets/minecraft/textures/entity/bear/
@@ -19,6 +20,7 @@
 /assets/minecraft/textures/entity/fish/
 /assets/minecraft/textures/entity/fox/
 /assets/minecraft/textures/entity/ghast/
+/assets/minecraft/textures/entity/goat/
 /assets/minecraft/textures/entity/horse/armor/
 /assets/minecraft/textures/entity/hoglin/
 /assets/minecraft/textures/entity/illager/
@@ -37,6 +39,7 @@
 /assets/minecraft/textures/entity/skeleton/
 /assets/minecraft/textures/entity/slime/
 /assets/minecraft/textures/entity/spider/
+/assets/minecraft/textures/entity/squid/
 /assets/minecraft/textures/entity/strider/
 /assets/minecraft/textures/entity/turtle/
 /assets/minecraft/textures/entity/villager/profession/

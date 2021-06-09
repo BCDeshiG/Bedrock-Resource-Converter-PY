@@ -62,6 +62,7 @@ def parseZip(arg1):
 		for root, dirs, files in os.walk(arg1):
 			if "manifest.json" in files: # Find manifest
 				arg1 = root # Navigate to where manifest is
+				return arg1
 	return arg1
 
 def parseManifest(arg1, arg2):
@@ -73,9 +74,7 @@ def parseManifest(arg1, arg2):
 	except:
 		print("Pack does not exist or is invalid")
 		exit()
-	outText = '{"pack": {"description": "'
-	outText += desc + '",'
-	outText += '"pack_format": 5}}'
+	outText = '{"pack": {"description": "' + desc + '",' + '"pack_format": 7}}'
 	try:
 		os.mkdir(arg2)
 		file = open(arg2 + "/pack.mcmeta", "x") # Create new file if it doesn't already exist
