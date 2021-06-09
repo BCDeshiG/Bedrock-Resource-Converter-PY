@@ -46,6 +46,8 @@ zombie_villager/profession/fisherman.png.mcmeta
 zombie_villager/profession/fletcher.png.mcmeta
 zombie_villager/profession/librarian.png.mcmeta
 zombie_villager/profession/shepherd.png.mcmeta
+sculk_sensor_tendril_active.png.mcmeta
+sculk_sensor_tendril_inactive.png.mcmeta
 
 NEW TEXTURES
 conduit.png

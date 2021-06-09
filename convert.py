@@ -1,6 +1,6 @@
 import sys, json, os, zipfile, csv
 from PIL import Image
-from shutil import copyfile
+from shutil import copyfile, copytree
 import fixTextures
 
 def parseArgs():
@@ -39,6 +39,7 @@ def startConversion(arg1, arg2):
 	splitCompass(arg1, arg2, "compass_atlas.png")
 	splitPaintings(arg1, arg2)
 	fixTextures.fixes(arg1, arg2) # Fixes texture differences
+	copyAnimations(arg2) # Copy over animation mcmeta files
 	print("\nConversion Complete")
 	print("Please see 'fixme.txt' for textures that need attention")
 	if os.path.isfile("missing.txt"):
@@ -177,5 +178,11 @@ def splitPaintingsAux(kz, arr, qtop, qw, qh, arg2): # uses quantum sizes
 	for i in range(len(arr)):
 		im = kz.crop((qw*i*q, top, right+(qw*i*q), bottom))
 		im.save(arg2 + arr[i])
+
+def copyAnimations(arg2):
+	arg2 += "/assets/minecraft/textures/"
+	copytree("./mcmeta/block/", arg2 + "block/", dirs_exist_ok=True)
+	copytree("./mcmeta/entity/", arg2 + "entity/", dirs_exist_ok=True)
+	copytree("./mcmeta/misc/", arg2 + "misc/", dirs_exist_ok=True)
 
 parseArgs()
