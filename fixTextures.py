@@ -222,6 +222,17 @@ def fixCat(arg1, arg2):
 	except FileNotFoundError:
 		print("Could not find cat texture")
 
+def fixAzalea(arg1, arg2, bush):
+	inn = arg1 + "/textures/blocks/"
+	out = arg2 + "/assets/minecraft/textures/block/"
+	tup = (1,0,0,0,1,-1) # Translate 0 across and 1 pixels down (elements 2 and 5)
+	try:
+		im = Image.open(inn + bush)
+		im = im.transform(im.size, Image.AFFINE, tup)
+		im.save(out + bush)
+	except FileNotFoundError:
+		print("Could not find " + bush + " file")
+
 def fixes(arg1, arg2):
 	fixBeds(arg1, arg2)
 	fixChests(arg1, arg2, "double_normal.png")
@@ -236,3 +247,5 @@ def fixes(arg1, arg2):
 	fixFoxes(arg1, arg2, "arctic_fox.png")
 	fixDog(arg1, arg2)
 	fixCat(arg1, arg2)
+	fixAzalea(arg1, arg2, "potted_azalea_bush_side.png")
+	fixAzalea(arg1, arg2, "potted_flowering_azalea_bush_side.png")

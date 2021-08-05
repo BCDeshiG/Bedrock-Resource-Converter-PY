@@ -90,9 +90,6 @@ enderman_eyes.png
 paintings/back.png
 piglin_leather_layer_1.png
 piglin_leather_layer_1_overlay.png
-candles
-potted azalea
-sculk sensor
 spyglass_model.png
 
 WEIRD TEXTURES
