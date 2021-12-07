@@ -4,30 +4,33 @@ import os
 def fixBeds(arg1, arg2): # FIXME Bed Feet
 	arg1 += "/textures/entity/bed/"
 	arg2 += "/assets/minecraft/textures/entity/bed/"
-	beds = []
 	try:
 		bedNames = os.listdir(arg1)
 		for i in range(len(bedNames)):
-			beds.append(Image.open(arg1 + bedNames[i]))
+			bedTex = Image.open(arg1 + bedNames[i])
+			q = bedTex.height // 64 # Resize scale
+
+			temp = bedTex.crop((0, 22*q, 44*q, 50*q))
+			bedCopy = bedTex.copy()
+			bedCopy.paste(temp, (0, 28*q)) # Shift down 6 pixels
+			temp = Image.new("RGBA", (44*q, 6*q))
+			bedCopy.paste(temp, (0, 22*q)) # Delete old part
+
+			temp = bedTex.crop((22*q, 0, 38*q, 6*q))
+			bedCopy.paste(temp, (22*q, 22*q)) # Shift down into gap
+			temp = Image.new("RGBA", (16*q, 6*q))
+			bedCopy.paste(temp, (22*q, 0)) # Delete old part
+
+			if bedNames[i][:6] == "silver":
+				bedNames[i] = "light_gray.png"
+
+			try:
+				bedCopy.save(arg2 + bedNames[i])
+			except:
+				print("Could not save '" + bedNames[i] + "' file")
 	except:
 		print("Could not load bed textures")
 		return
-	q = beds[0].height // 64 # Resize scale
-	for i in range(len(beds)):
-		temp = beds[i].crop((0, 22*q, 44*q, 50*q))
-		bedCopy = beds[i].copy()
-		bedCopy.paste(temp, (0, 28*q)) # Shift down 6 pixels
-		temp = Image.new("RGBA", (44*q, 6*q))
-		bedCopy.paste(temp, (0, 22*q)) # Delete old part
-
-		temp = beds[i].crop((22*q, 0, 38*q, 6*q))
-		bedCopy.paste(temp, (22*q, 22*q)) # Shift down into gap
-		temp = Image.new("RGBA", (16*q, 6*q))
-		bedCopy.paste(temp, (22*q, 0)) # Delete old part
-		try:
-			bedCopy.save(arg2 + bedNames[i])
-		except:
-			print("Could not save '" + bedNames[i] + "' file")
 
 def fixChests(arg1, arg2, chest):
 	arg1 += "/textures/entity/chest/"
