@@ -1322,7 +1322,7 @@
 /textures/blocks/deepslate/deepslate.png,/assets/minecraft/textures/block/deepslate.png
 /textures/blocks/deepslate/deepslate_bricks.png,/assets/minecraft/textures/block/deepslate_bricks.png
 /textures/blocks/deepslate/deepslate_coal_ore.png,/assets/minecraft/textures/block/deepslate_coal_ore.png
-/textures/blocks/deepslate/deepslate_copper_ore.png,/assets/minecraft/textures/block/deepslate__orecopper.png
+/textures/blocks/deepslate/deepslate_copper_ore.png,/assets/minecraft/textures/block/deepslate_copper_ore.png
 /textures/blocks/deepslate/deepslate_diamond_ore.png,/assets/minecraft/textures/block/deepslate_diamond_ore.png
 /textures/blocks/deepslate/deepslate_emerald_ore.png,/assets/minecraft/textures/block/deepslate_emerald_ore.png
 /textures/blocks/deepslate/deepslate_gold_ore.png,/assets/minecraft/textures/block/deepslate_gold_ore.png
@@ -1454,3 +1454,4 @@
 /textures/blocks/sculk_sensor_tendril_active.png,/assets/minecraft/textures/block/sculk_sensor_tendril_active.png
 /textures/blocks/sculk_sensor_tendril_inactive.png,/assets/minecraft/textures/block/sculk_sensor_tendril_inactive.png
 /textures/blocks/sculk_sensor_top.png,/assets/minecraft/textures/block/sculk_sensor_top.png
+/textures/items/record_otherside.png,/assets/minecraft/textures/item/music_disc_otherside.png
