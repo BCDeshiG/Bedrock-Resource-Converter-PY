@@ -32,7 +32,7 @@ def fixBeds(arg1, arg2): # FIXME Bed Feet
 		print("Could not load bed textures")
 		return
 
-def fixChests(arg1, arg2, chest):
+def fixDoubleChests(arg1, arg2, chest):
 	arg1 += "/textures/entity/chest/"
 	arg2 += "/assets/minecraft/textures/entity/chest/"
 	chestType = chest.replace("double","")
@@ -46,40 +46,67 @@ def fixChests(arg1, arg2, chest):
 		q = h//64 # Resize scale
 
 		# Right side of chest
-		temp = im.crop((0, 0, 29*q, 43*q))
+		temp = im.crop((0, 0, 6*q, 5*q)) # Handle
 		right.paste(temp, (0, 0))
-		temp = right.crop((14*q, 0, 29*q, 14*q))
-		right.paste(temp, (29*q, 0))
-		temp = right.crop((14*q, 19*q, 29*q, 33*q))
-		right.paste(temp, (29*q, 19*q))
-		temp = im.crop((44*q, 0, 59*q, 14*q))
-		right.paste(temp, (14*q, 0))
-		temp = im.crop((44*q, 19*q, 59*q, 33*q))
-		right.paste(temp, (14*q, 19*q))
-		temp = im.crop((73*q, 14*q, 88*q, 19*q))
-		right.paste(temp, (43*q, 14*q))
-		temp = im.crop((73*q, 33*q, 88*q, 43*q))
-		right.paste(temp, (43*q, 33*q))
+
+		temp = im.crop((14*q, 0, 29*q, 14*q)) # Lid top
+		right.paste(temp.transpose(method=Image.FLIP_TOP_BOTTOM), (29*q, 0))
+
+		temp = im.crop((44*q, 0, 59*q, 14*q)) # Lid inside
+		right.paste(temp.transpose(method=Image.FLIP_TOP_BOTTOM), (14*q, 0))
+
+		temp = im.crop((0, 14*q, 14*q, 19*q)) # Lid side
+		right.paste(temp.rotate(180), (0, 14*q))
+
+		temp = im.crop((14*q, 14*q, 29*q, 19*q)) # Lid front
+		right.paste(temp.rotate(180), (43*q, 14*q))
+
+		temp = im.crop((73*q, 14*q, 88*q, 19*q)) # Lid back
+		right.paste(temp.rotate(180), (14*q, 14*q))
+
+		temp = im.crop((14*q, 19*q, 29*q, 33*q)) # Innards
+		right.paste(temp.transpose(method=Image.FLIP_TOP_BOTTOM), (29*q, 19*q))
+
+		temp = im.crop((44*q, 19*q, 59*q, 33*q)) # Base
+		right.paste(temp.transpose(method=Image.FLIP_TOP_BOTTOM), (14*q, 19*q))
+
+		temp = im.crop((0, 33*q, 14*q, 43*q)) # Bottom side
+		right.paste(temp.rotate(180), (0, 33*q))
+
+		temp = im.crop((14*q, 33*q, 29*q, 43*q)) # Bottom front
+		right.paste(temp.rotate(180), (43*q, 33*q))
+
+		temp = im.crop((73*q, 33*q, 88*q, 43*q)) # Bottom back
+		right.paste(temp.rotate(180), (14*q, 33*q))
+
 		right.save(arg2 + chestType + "_right.png")
 
 		# Left side of chest
-		temp = im.crop((0, 0, 6*q, 5*q))
+		temp = im.crop((0, 0, 6*q, 5*q)) # Handle
 		left.paste(temp, (0, 0))
-		temp = im.crop((29*q, 14*q, 73*q, 19*q))
+
+		temp = im.crop((29*q, 14*q, 73*q, 19*q)) # Lid front & side
 		left.paste(temp.rotate(180), (14*q, 14*q))
-		temp = im.crop((29*q, 33*q, 73*q, 43*q))
+
+		temp = im.crop((29*q, 33*q, 73*q, 43*q)) # Bottom
 		left.paste(temp.rotate(180), (14*q, 33*q))
-		temp = im.crop((29*q, 19*q, 44*q, 33*q))
-		left.paste(temp, (29*q, 19*q))
-		temp = im.crop((59*q, 19*q, 74*q, 33*q))
-		left.paste(temp, (14*q, 19*q))
-		temp = im.crop((59*q, 0, 74*q, 14*q))
-		left.paste(temp, (14*q, 0))
-		temp = im.crop((29*q, 0, 44*q, 14*q))
-		left.paste(temp, (29*q, 0))
-		temp = Image.new("RGBA", (15*q, 14*q))
+
+		temp = im.crop((29*q, 19*q, 44*q, 33*q)) # Innards
+		left.paste(temp.transpose(method=Image.FLIP_TOP_BOTTOM), (29*q, 19*q))
+
+		temp = im.crop((59*q, 19*q, 74*q, 33*q)) # Base
+		left.paste(temp.transpose(method=Image.FLIP_TOP_BOTTOM), (14*q, 19*q))
+
+		temp = im.crop((59*q, 0, 74*q, 14*q)) # Lid inside
+		left.paste(temp.transpose(method=Image.FLIP_TOP_BOTTOM), (14*q, 0))
+
+		temp = im.crop((29*q, 0, 44*q, 14*q)) # Lid top
+		left.paste(temp.transpose(method=Image.FLIP_TOP_BOTTOM), (29*q, 0))
+
+		temp = Image.new("RGBA", (15*q, 14*q)) # Delete some sections
 		left.paste(temp, (44*q, 0))
 		left.paste(temp, (44*q, 19*q))
+
 		left.save(arg2 + chestType + "_left.png")
 	except:
 		print("Could not load '" + chest + "' file")
@@ -238,8 +265,8 @@ def fixAzalea(arg1, arg2, bush):
 
 def fixes(arg1, arg2):
 	fixBeds(arg1, arg2)
-	fixChests(arg1, arg2, "double_normal.png")
-	fixChests(arg1, arg2, "trapped_double.png")
+	fixDoubleChests(arg1, arg2, "double_normal.png")
+	fixDoubleChests(arg1, arg2, "trapped_double.png")
 	fixZombies(arg1, arg2, "zombie.png")
 	fixZombies(arg1, arg2, "husk.png")
 	fixDrowned(arg1, arg2)
