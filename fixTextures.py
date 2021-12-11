@@ -111,6 +111,61 @@ def fixDoubleChests(arg1, arg2, chest):
 	except:
 		print("Could not load '" + chest + "' file")
 
+def fixSingleChests(arg1, arg2, chest):
+	arg1 += "/textures/entity/chest/"
+	arg2 += "/assets/minecraft/textures/entity/chest/"
+	try:
+		im = Image.open(arg1 + chest)
+		w,h = im.size
+		single = Image.new("RGBA", (w, h))
+		q = h//64 # Resize scale
+
+		temp = im.crop((0, 0, 6*q, 5*q)) # Handle
+		single.paste(temp, (0, 0))
+
+		temp = im.crop((14*q, 0, 28*q, 14*q)) # Lid top
+		single.paste(temp.transpose(method=Image.FLIP_TOP_BOTTOM), (28*q, 0))
+
+		temp = im.crop((28*q, 0, 42*q, 14*q)) # Lid inside
+		single.paste(temp.transpose(method=Image.FLIP_TOP_BOTTOM), (14*q, 0))
+
+		temp = im.crop((14*q, 19*q, 28*q, 33*q)) # Innards
+		single.paste(temp.transpose(method=Image.FLIP_TOP_BOTTOM), (28*q, 19*q))
+
+		temp = im.crop((28*q, 19*q, 42*q, 33*q)) # Base
+		single.paste(temp.transpose(method=Image.FLIP_TOP_BOTTOM), (14*q, 19*q))
+
+		temp = im.crop((0, 14*q, 14*q, 19*q)) # Lid side 1
+		single.paste(temp.rotate(180), (28*q, 14*q))
+
+		temp = im.crop((28*q, 14*q, 42*q, 19*q)) # Lid side 2
+		single.paste(temp.rotate(180), (0, 14*q))
+
+		temp = im.crop((14*q, 14*q, 28*q, 19*q)) # Lid front
+		single.paste(temp.rotate(180), (42*q, 14*q))
+
+		temp = im.crop((42*q, 14*q, 56*q, 19*q)) # Lid back
+		single.paste(temp.rotate(180), (14*q, 14*q))
+
+		temp = im.crop((0, 33*q, 14*q, 43*q)) # Bottom side 1
+		single.paste(temp.rotate(180), (28*q, 33*q))
+		single.save(arg2 + chest)
+
+		temp = im.crop((28*q, 33*q, 42*q, 43*q)) # Bottom side 2
+		single.paste(temp.rotate(180), (0, 33*q))
+		single.save(arg2 + chest)
+
+		temp = im.crop((14*q, 33*q, 28*q, 43*q)) # Bottom front
+		single.paste(temp.rotate(180), (42*q, 33*q))
+		single.save(arg2 + chest)
+
+		temp = im.crop((42*q, 33*q, 56*q, 43*q)) # Bottom back
+		single.paste(temp.rotate(180), (14*q, 33*q))
+
+		single.save(arg2 + chest)
+	except:
+		print("Could not load '" + chest + "' file")
+
 def fixZombies(arg1, arg2, zombie):
 	arg1 += "/textures/entity/zombie/"
 	arg2 += "/assets/minecraft/textures/entity/zombie/"
@@ -267,6 +322,9 @@ def fixes(arg1, arg2):
 	fixBeds(arg1, arg2)
 	fixDoubleChests(arg1, arg2, "double_normal.png")
 	fixDoubleChests(arg1, arg2, "trapped_double.png")
+	fixSingleChests(arg1, arg2, "ender.png")
+	fixSingleChests(arg1, arg2, "normal.png")
+	fixSingleChests(arg1, arg2, "trapped.png")
 	fixZombies(arg1, arg2, "zombie.png")
 	fixZombies(arg1, arg2, "husk.png")
 	fixDrowned(arg1, arg2)
