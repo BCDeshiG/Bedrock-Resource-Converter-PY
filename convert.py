@@ -96,6 +96,10 @@ def parseTexts(arg1, arg2):
 	except FileNotFoundError:
 		print("Could not find 'end.txt' file")
 	try:
+		copyfile((arg1 + "/credits/quote.txt"), (arg2 + "/assets/minecraft/texts/postcredits.txt"))
+	except FileNotFoundError:
+		print("Could not find 'quote.txt' file")
+	try:
 		with open(arg1 + "/splashes.json", "r", encoding="utf-8") as file:
 			splashes = json.load(file)
 	except:
