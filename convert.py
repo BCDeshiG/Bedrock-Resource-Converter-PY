@@ -100,6 +100,10 @@ def parseTexts(arg1, arg2):
 	except FileNotFoundError:
 		print("Could not find 'quote.txt' file")
 	try:
+		copyfile((arg1 + "/credits/credits.json"), (arg2 + "/assets/minecraft/texts/credits.json"))
+	except FileNotFoundError:
+		print("Could not find 'credits.json' file")
+	try:
 		with open(arg1 + "/splashes.json", "r", encoding="utf-8") as file:
 			splashes = json.load(file)
 	except:
