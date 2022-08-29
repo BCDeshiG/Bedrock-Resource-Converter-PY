@@ -37,6 +37,7 @@ def startConversion(arg1, arg2):
 	copyTextures(arg1, arg2)
 	splitCompass(arg1, arg2, "watch_atlas.png")
 	splitCompass(arg1, arg2, "compass_atlas.png")
+	splitCompass(arg1, arg2, "recovery_compass_atlas.png")
 	splitPaintings(arg1, arg2)
 	fixTextures.fixes(arg1, arg2) # Fixes texture differences
 	copyAnimations(arg2) # Copy over animation mcmeta files
@@ -132,15 +133,20 @@ def copyTextures(arg1, arg2):
 
 def splitCompass(arg1, arg2, atlas):
 	arg2 += "/assets/minecraft/textures/item/"
+	splitName = atlas.split("_")
+	newName = splitName[0]
+	# Recovery compass edge case
+	if len(splitName) != 2:
+		newName += "_" + splitName[1]
 	try:
 		im = Image.open(arg1 + "/textures/items/" + atlas)
 		w,h = im.size
 		for i in range(h//w):
 			frame = im.crop((0, i*16, w, (i+1)*16))
 			if i < 10:
-				frame.save(arg2 + atlas.split("_")[0] + "_0" + str(i) + ".png")
+				frame.save(arg2 + newName + "_0" + str(i) + ".png")
 			else:
-				frame.save(arg2 + atlas.split("_")[0] + "_" + str(i) + ".png")
+				frame.save(arg2 + newName + "_" + str(i) + ".png")
 	except FileNotFoundError:
 		print("Could not find '" + atlas + "' file")
 
@@ -161,6 +167,7 @@ def splitPaintings(arg1, arg2):
 		"match.png", "bust.png", "stage.png",
 		"void.png", "skull_and_roses.png", "wither.png"
 	]
+	xUnused = ["earth.png", "wind.png", "fire.png", "water.png"]
 	x64P = ["pointer.png", "pigscene.png", "burning_skull.png"]
 	try:
 		kz = Image.open(arg1 + "kz.png")
@@ -168,6 +175,7 @@ def splitPaintings(arg1, arg2):
 		splitPaintingsAux(kz, xWide, 2, 2, 1, arg2)
 		splitPaintingsAux(kz, xTall, 4, 1, 2, arg2)
 		splitPaintingsAux(kz, x32P, 8, 2, 2, arg2)
+		splitPaintingsAux(kz, xUnused, 10, 2, 2, arg2)
 		splitPaintingsAux(kz, x64P, 12, 4, 4, arg2)
 		w,h = kz.size
 		kz.crop((0, (h//16)*6, (w//16)*4, (h//16)*8)).save(arg2 + "fighters.png")

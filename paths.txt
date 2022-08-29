@@ -1,6 +1,7 @@
 /assets/minecraft/texts/
 /assets/minecraft/textures/block/
 /assets/minecraft/textures/colormap/
+/assets/minecraft/textures/entity/allay/
 /assets/minecraft/textures/entity/axolotl/
 /assets/minecraft/textures/entity/armorstand/
 /assets/minecraft/textures/entity/banner/
@@ -11,6 +12,7 @@
 /assets/minecraft/textures/entity/boat/
 /assets/minecraft/textures/entity/cat/
 /assets/minecraft/textures/entity/chest/
+/assets/minecraft/textures/entity/chest_boat/
 /assets/minecraft/textures/entity/conduit/
 /assets/minecraft/textures/entity/cow/
 /assets/minecraft/textures/entity/creeper/
@@ -19,6 +21,7 @@
 /assets/minecraft/textures/entity/enderman/
 /assets/minecraft/textures/entity/fish/
 /assets/minecraft/textures/entity/fox/
+/assets/minecraft/textures/entity/frog/
 /assets/minecraft/textures/entity/ghast/
 /assets/minecraft/textures/entity/goat/
 /assets/minecraft/textures/entity/horse/armor/
@@ -41,10 +44,12 @@
 /assets/minecraft/textures/entity/spider/
 /assets/minecraft/textures/entity/squid/
 /assets/minecraft/textures/entity/strider/
+/assets/minecraft/textures/entity/tadpole/
 /assets/minecraft/textures/entity/turtle/
 /assets/minecraft/textures/entity/villager/profession/
 /assets/minecraft/textures/entity/villager/profession_level/
 /assets/minecraft/textures/entity/villager/type/
+/assets/minecraft/textures/entity/warden/
 /assets/minecraft/textures/entity/wither/
 /assets/minecraft/textures/entity/wolf/
 /assets/minecraft/textures/entity/zombie/
