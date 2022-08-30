@@ -76,7 +76,7 @@ def parseManifest(arg1, arg2):
 	except:
 		print("Pack does not exist or is invalid")
 		exit()
-	outText = '{"pack": {"description": "' + desc + '",' + '"pack_format": 8}}'
+	outText = '{"pack": {"description": "' + desc + '",' + '"pack_format": 9}}'
 	try:
 		os.mkdir(arg2)
 		file = open(arg2 + "/pack.mcmeta", "x") # Create new file if it doesn't already exist
