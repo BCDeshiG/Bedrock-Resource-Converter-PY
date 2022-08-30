@@ -135,6 +135,9 @@ def splitCompass(arg1, arg2, atlas):
 	arg2 += "/assets/minecraft/textures/item/"
 	splitName = atlas.split("_")
 	newName = splitName[0]
+	# Clock edge case ("watch" -> "clock")
+	if newName == "watch":
+		newName = "clock"
 	# Recovery compass edge case
 	if len(splitName) != 2:
 		newName += "_" + splitName[1]

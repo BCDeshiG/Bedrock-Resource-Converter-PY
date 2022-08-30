@@ -496,8 +496,8 @@
 /textures/blocks/glowstone.png,/assets/minecraft/textures/block/glowstone.png
 /textures/blocks/gold_block.png,/assets/minecraft/textures/block/gold_block.png
 /textures/blocks/gold_ore.png,/assets/minecraft/textures/block/gold_ore.png
-/textures/blocks/grass_path_side.png,/assets/minecraft/textures/block/grass_path_side.png
-/textures/blocks/grass_path_top.png,/assets/minecraft/textures/block/grass_path_top.png
+/textures/blocks/grass_path_side.png,/assets/minecraft/textures/block/dirt_path_side.png
+/textures/blocks/grass_path_top.png,/assets/minecraft/textures/block/dirt_path_top.png
 /textures/blocks/gravel.png,/assets/minecraft/textures/block/gravel.png
 /textures/blocks/hay_block_side.png,/assets/minecraft/textures/block/hay_block_side.png
 /textures/blocks/hay_block_top.png,/assets/minecraft/textures/block/hay_block_top.png
@@ -629,7 +629,7 @@
 /textures/map/map_background.png,/assets/minecraft/textures/map/map_background.png
 /textures/ui/missing_pack_icon.png,/assets/minecraft/textures/misc/unknown_pack.png
 /textures/misc/enchanted_item_glint.png,/assets/minecraft/textures/misc/enchanted_item_glint.png
-/textures/misc/pumpkinblur.png,/assets/minecraft/textures/misc/pumpkin_blur.png
+/textures/misc/pumpkinblur.png,/assets/minecraft/textures/misc/pumpkinblur.png
 /textures/ui/absorption_effect.png,/assets/minecraft/textures/mob_effect/absorption.png
 /textures/ui/bad_omen_effect.png,/assets/minecraft/textures/mob_effect/bad_omen.png
 /textures/ui/blindness_effect.png,/assets/minecraft/textures/mob_effect/blindness.png
@@ -1356,7 +1356,7 @@
 /textures/blocks/deepslate/polished_deepslate.png,/assets/minecraft/textures/block/polished_deepslate.png
 /textures/blocks/powder_snow.png,/assets/minecraft/textures/block/powder_snow.png
 /textures/blocks/raw_copper_block.png,/assets/minecraft/textures/block/raw_copper_block.png
-/textures/blocks/raw_gold_block.png,/assets/minecraft/textures/block/raw__blockgold.png
+/textures/blocks/raw_gold_block.png,/assets/minecraft/textures/block/raw_gold_block.png
 /textures/blocks/raw_iron_block.png,/assets/minecraft/textures/block/raw_iron_block.png
 /textures/blocks/small_amethyst_bud.png,/assets/minecraft/textures/block/small_amethyst_bud.png
 /textures/blocks/small_dripleaf_side.png,/assets/minecraft/textures/block/small_dripleaf_side.png
