@@ -1152,9 +1152,9 @@
 /textures/entity/villager2/professions/fletcher.tga,/assets/minecraft/textures/entity/villager/profession/fletcher.png
 /textures/entity/villager2/professions/leatherworker.tga,/assets/minecraft/textures/entity/villager/profession/leatherworker.png
 /textures/entity/villager2/professions/librarian.tga,/assets/minecraft/textures/entity/villager/profession/librarian.png
-/textures/entity/villager2/professions/nitwit.tga,/assets/minecraft/textures/entity/villager/profession/mason.png
-/textures/entity/villager2/professions/shepherd.tga,/assets/minecraft/textures/entity/villager/profession/nitwit.png
-/textures/entity/villager2/professions/stonemason.tga,/assets/minecraft/textures/entity/villager/profession/shepherd.png
+/textures/entity/villager2/professions/nitwit.tga,/assets/minecraft/textures/entity/villager/profession/nitwit.png
+/textures/entity/villager2/professions/shepherd.tga,/assets/minecraft/textures/entity/villager/profession/shepherd.png
+/textures/entity/villager2/professions/stonemason.tga,/assets/minecraft/textures/entity/villager/profession/mason.png
 /textures/entity/villager2/professions/toolsmith.tga,/assets/minecraft/textures/entity/villager/profession/toolsmith.png
 /textures/entity/villager2/professions/weaponsmith.tga,/assets/minecraft/textures/entity/villager/profession/weaponsmith.png
 /textures/entity/wither_boss/wither.png,/assets/minecraft/textures/entity/wither/wither.png
