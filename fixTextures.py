@@ -310,13 +310,28 @@ def fixCat(arg1, arg2):
 def fixAzalea(arg1, arg2, bush):
 	inn = arg1 + "/textures/blocks/"
 	out = arg2 + "/assets/minecraft/textures/block/"
-	tup = (1,0,0,0,1,-1) # Translate 0 across and 1 pixels down (elements 2 and 5)
 	try:
 		im = Image.open(inn + bush)
+		w,h = im.size
+		q = w//16 # Resize scale
+		tup = (1,0,0,0,1,-1*q) # Translate 0 across and 1 units down (elements 2 and 5)
 		im = im.transform(im.size, Image.AFFINE, tup)
 		im.save(out + bush)
 	except FileNotFoundError:
 		print("Could not find " + bush + " file")
+
+def fixTurtle(arg1, arg2):
+	inn = arg1 + "/textures/entity/sea_turtle.png"
+	out = arg2 + "/assets/minecraft/textures/entity/turtle/big_sea_turtle.png"
+	try:
+		im = Image.open(inn)
+		w,h = im.size
+		q = w//128 # Resize scale
+		tup = (1,0,-1*q,0,1,0) # Translate 1 across and 0 units down (elements 2 and 5)
+		im = im.transform(im.size, Image.AFFINE, tup)
+		im.save(out)
+	except FileNotFoundError:
+		print("Could not find turtle texture")
 
 def fixes(arg1, arg2):
 	fixBeds(arg1, arg2)
@@ -337,3 +352,4 @@ def fixes(arg1, arg2):
 	fixCat(arg1, arg2)
 	fixAzalea(arg1, arg2, "potted_azalea_bush_side.png")
 	fixAzalea(arg1, arg2, "potted_flowering_azalea_bush_side.png")
+	fixTurtle(arg1, arg2)

@@ -135,4 +135,3 @@ beds (bed feet)
 chain.png (combined)
 striders (seperate saddle)
 glow squid
-turtle (shift 1px right)
